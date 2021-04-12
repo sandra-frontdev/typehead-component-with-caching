@@ -1,0 +1,26 @@
+/*
+ * BASE STYLES
+ * Override HTML tags here
+ * ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  box-sizing: border-box;
+  min-height: 100vh;
+  width: 100%;
+  color: $color-black;
+  font-family: "Open Sans", sans-serif;
+  font-weight: $weight-regular;
+  font-size: $default-font-size;
+  line-height: 1.7;
+  color: $color-black;
+}
