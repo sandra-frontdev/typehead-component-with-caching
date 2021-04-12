@@ -8,29 +8,31 @@ let fruitName;
 const proxyUrl = "https://salty-ridge-10349.herokuapp.com/";
 const apiUrl = "https://www.fruityvice.com/api/fruit/all";
 
+let fruitsArray = [];
+
 const getFruits = async () => {
   try {
     const response = await axios.get(proxyUrl + apiUrl);
     fruits = response.data;
     fruitName = fruits.map((fruit) => fruit.name);
-    setCache("fruitsResults");
-    return fruitName;
+
+    fruitsArray = fruitName;
+    console.log(fruitsArray);
+    setCache("fruitItemCached", proxyUrl + apiUrl);
   } catch (error) {
     console.log("no fruits", error);
   }
 };
 
-let fruitsArray = [];
-
 caches
-  .has("fruitsResults")
+  .has("fruitItemCached")
   .then(function (hasCache) {
     if (!hasCache) {
-      fruitsArray = getFruits();
+      getFruits();
       console.log("Data from the api!");
     } else {
       const setCachedData = async function () {
-        let data = await getCache("fruitsResults", proxyUrl + apiUrl);
+        let data = await getCache("fruitItemCached", proxyUrl + apiUrl);
         let s = data.map((fruit) => fruit.name);
         return s;
       };
